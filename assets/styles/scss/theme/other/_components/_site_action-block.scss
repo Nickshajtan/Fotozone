@@ -1,0 +1,106 @@
+.we-actions{
+    &:before{
+        content: '';
+        background-image: url(img/arts/salute-left.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+        position: absolute;
+        left: 50px;
+        top: 25px;
+        width: 30%;
+        height: 100%;
+        transform: rotate(-45deg);
+        opacity: .8;
+    }
+    &:after{
+        content: '';
+        background-image: url(img/arts/salute-right.png);
+        position: absolute;
+        bottom: 50px;
+        right: 30px;
+        display: block;
+        position: absolute;
+        width: 30%;
+        height: 300px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .clockdiv{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 25px 0;
+        .count{
+            font-size: $big + 1.3rem;
+            padding: 5px 20px;
+            min-width: 100px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 0px 15px 0px #ccc;
+            font-family: $cursive;
+        }
+        .smalltext{
+            font-family: $helper-font;
+            font-size: $big;
+            text-transform: uppercase;
+            font-weight: 100;
+            letter-spacing: 3px;
+        }
+    }
+    &.light-theme{
+        .clockdiv{
+            .count{
+                background-color: $third-light-color;
+                border: 1px solid $light-helper-color;
+            }
+        }
+        .button{
+            @include rounded--button($dark, 100px, relative, $third-light-color, 10px 30px);
+            margin-top: 15px;
+            box-shadow: 0 0 5px $dark;
+            font-size: $middler;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: .3s;
+            border: 5px solid $third-light-color;
+            font-family: $secondary-font;
+            &:hover, &:focus{
+                text-decoration: none;
+                border-color: $light-helper-color;
+            }
+        }
+    }
+    &.dark-theme{
+        .clockdiv{
+            .count{
+                background-color: $third-dark-color;
+                border: 1px solid $dark;
+            }
+        }
+        .button{
+            @include rounded--button($dark, 100px, relative, $third-dark-color, 10px 30px);
+            margin-top: 15px;
+            box-shadow: 0 0 5px $dark;
+            font-size: $middler;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: .3s;
+            border: 5px solid $third-dark-color;
+            font-family: $secondary-font;
+            &:hover, &:focus{
+                text-decoration: none;
+                border-color: darken( $third-dark-color, 10% );
+            }
+        }
+    }
+}
+@media screen and ( max-width: 767px ){
+    .we-actions{
+        &:before, &:after{
+            display: none;
+        }
+        overflow-x: hidden;
+    }
+}

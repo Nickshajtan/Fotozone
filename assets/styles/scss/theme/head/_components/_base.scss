@@ -1,0 +1,138 @@
+#content{
+    min-height: calc(100vh - 340px);
+    .content-none{
+        padding: 25px 0;
+    }
+}
+.light-theme{
+    a{
+        color: $light-helper-color;
+        transition: .3s;
+        &:hover, &:focus, &:visited{
+            text-decoration: none;
+            color: darken( $light-helper-color, 15% );
+        }
+    }
+}
+.dark-theme{
+    a{
+        color: $third-dark-color;
+        transition: .3s;
+        &:hover, &:focus, &:visited{
+            text-decoration: none;
+            color: darken( $dark-helper-color, 5% );
+        }
+    }
+}
+.img-inner{
+    @include push--auto;
+    object-fit: contain;
+}
+p{
+    @include font-source-sans( $regular, $first-light-color, $weight-normal,  $line-middle, $main-font );
+}
+section{
+    padding: 100px 0;
+    position: relative;
+    .section-header{
+        *{
+            @include font-source-sans( $big, $first-light-color, $weight-normal,  $line-middler, $secondary-font);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        padding-bottom: 50px;
+        &.has-before{
+            padding-bottom: 15px;
+        }
+    }
+    .section-subheader, .section-subheader *{
+        @include font-source-sans( $middler, $first-light-color, $weight-lighter,  $line-normal, $cursive);
+        font-style: italic;
+    }
+    p{
+        @include font-source-sans( $regular, $first-light-color, $weight-lighter,  $line-middle, $main-font );
+    }
+    &.light-theme, &.dark-theme{
+        &.color-bg{
+            @include bg--auto($third-light-color, linear-gradient(left, $third-light-color, darken( $third-light-color, 35% ) ), cover, no-repeat);
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#{$third-light-color}', EndColorStr='#{darken( $third-light-color, 15% )}');
+            box-shadow: inset 0 15px 15px  -15px #333 , inset 0 -15px 15px  -15px #333;
+        }
+    }
+    &.light-theme{
+        &.color-bg{
+            z-index: 40;
+             .section-header{
+                *{
+                    @include font-source-sans( $big, $first-light-color, $weight-normal,  $line-normal, $secondary-font);
+                }
+            }       
+        }
+        &.white-bg{
+            z-index: 30;
+            @include bg--auto(rgba(255, 255, 255, .95), none, cover, no-repeat);
+        }
+    }
+    &.dark-theme{
+        &.color-bg{
+            .section-header{
+                *{
+                    @include font-source-sans( $big, $first-dark-color, $weight-normal,  $line-normal, $secondary-font);
+                }
+            }   
+        }
+        &.white-bg{
+            @include bg--auto(rgba(255, 255, 255, .3), linear-gradient(left, rgba(255, 255, 255, .3), darken( rgba(255, 255, 255, .3), 35% ) ), cover, no-repeat);
+        }
+    }
+}
+
+// if enabled waterwheel
+.waterwall-slider{
+    width:100%;
+    height: 450px;
+    position: relative;
+    margin-bottom: 80px;
+    img{
+        display: hidden; /* hide images until carousel prepares them */
+        cursor: pointer; /* not needed if you wrap carousel items in links */
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+        opacity: 1;
+    }
+}
+@media screen and ( max-width: 1023px ){
+    section{
+        padding: 100px 0;
+        .section-header *{
+            font-size: $middle;
+            line-height: $line-middle;
+        }
+        &.light-theme, &.dark-theme, &.color-bg{
+            &, &.color-bg, &.white-bg{
+                .section-header *{
+                    font-size: $middle;
+                    line-height: $line-middle;
+                }
+            }
+        }
+    }
+}
+@media screen and ( max-width: 767px ){
+    section{
+        padding: 60px 0;
+        .section-header *{
+            font-size: $middler;
+            line-height: $line-middler;
+            word-break: break-word;
+        }
+        &.light-theme, &.dark-theme, &.color-bg{
+            &, &.color-bg, &.white-bg{
+                .section-header *{
+                    font-size: $middler;
+                    line-height: $line-middle;
+                    word-break: break-word;
+                }
+            }
+        }
+    }
+}

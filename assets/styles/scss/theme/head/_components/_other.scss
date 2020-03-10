@@ -1,0 +1,534 @@
+.overlay{
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 200;
+    display: none;
+    &.on, &.mobile-on{
+        display: block!important;
+    }
+}
+.noscroll{ 
+    left: 0;
+    right: 0;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    //position: fixed !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+/* Theme modals styles */
+.modal{
+    position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.5);
+	z-index: 999;
+    min-height: 100vh;
+    cursor: pointer;
+    overflow-y: scroll;
+    opacity: 0;
+    transition: .5s linear;
+    &.show-visible{
+        transition: .5s linear;
+        opacity: 1;
+        display: flex;
+    }
+    .modal-content{
+        max-width: 600px;
+        width: 100%;
+        background-color: $yellow;
+        border: 1px solid $orange;
+        padding: 10px;
+    }
+    .modal-header{
+        text-transform: uppercase;
+        font-size: $middle;
+        letter-spacing: 3px;
+        border-color: $orange;
+        font-family: $secondary-font;
+    }
+    .modal-body{
+        font-size: $regular;
+    }
+    &.modal-form{
+        .modal-content{
+            background-color: $dark;
+        }
+        .modal-body, .modal-header{
+            color: $white;
+        }
+    }
+}
+.closer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid $orange;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 5px;
+    div{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    span{
+        display: block;
+        border-radius: 2px;
+        height: 2px;
+        width: 90%;
+        background: $orange;
+        position: absolute;
+        top: 15px;
+        &:first-child{
+            transform: rotate(45deg);
+        }
+        &:last-child{
+            transform: rotate(-45deg);
+        }
+    }
+}
+/* Theme color switcher */
+.switcher{
+    cursor: pointer;
+    border-radius: 100px;
+    border: 2px solid $orange;
+    position: fixed;
+    z-index: 150;
+    display: block;
+    width: 60px;
+    height: 60px;
+    bottom: 45px;
+    left: 35px;
+    transition: .3s ease-in-out;
+    overflow: hidden;
+    &.sun{
+        transform: rotate(-45deg);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        &:hover, &:focus{
+            transform: rotate(0deg);
+            width: 80px;
+            height: 80px;
+        }
+    }
+    &.moon{
+        transform: rotate(135deg);
+        box-shadow: 0 5px 15px rgba(255,255,255,0.5);
+        &:hover, &:focus{
+            transform: rotate(180deg);
+            width: 80px;
+            height: 80px;
+        }
+    }
+    .light-theme{
+        display: block;
+        width: 100%;
+        height: 50%;
+        cursor: pointer;
+        border-bottom: 1px solid $orange;
+        transition: .3s;
+        background-color: $white;
+        background-image: url(img/icons/icon-sun.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .dark-theme{
+        display: block;
+        width: 100%;
+        height: 50%;
+        cursor: pointer;
+        border-top: 1px solid $orange;
+        transition: .3s;
+        background-color: $dark;
+        background-image: url(img/icons/icon-moon-star.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+@media screen and (max-width: 768px){
+    .switcher{
+        left: 15px;
+        bottom: 25px;
+    }
+}
+/* Feedback styles */
+.contact-button-wrap{
+    position: relative;
+    z-index: 150;
+    .button-tel{
+        background-color: $yellow;
+        overflow: hidden;
+        border:2px solid $orange;
+        border-radius: 100px;
+        box-shadow:0 8px 10px transpertize($yellow, 0.5);
+        cursor:pointer;
+        height:68px;
+        text-align:center;
+        width:68px;
+        position: fixed;
+        right: 55px;
+        bottom: 50px;
+        z-index:150;
+        transition:.3s;
+        -webkit-animation:hoverWave linear 1s infinite;
+        animation:hoverWave linear 1s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button-tel-icon{
+                 animation: 1200ms ease 0s normal none 1 running shake;
+                 animation-iteration-count: infinite;
+                -webkit-animation: 1200ms ease 0s normal none 1 running shake;
+                -webkit-animation-iteration-count: infinite;
+                 transition: .5s ease-in-out;
+                 width: 40px;
+                 height: 55px;
+                 background-image: url(img/icons/phone.svg);
+                 background-repeat: no-repeat;
+                 background-size: contain;
+                 background-position: center;
+                 position: absolute;
+                 opacity: 1;
+                 transition: opacity .3s linear;
+         }
+         .button-tel-content{
+                height:68px;
+                width:68px;        
+                border-radius:100px;
+                position:relative;
+                overflow:hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+               .text{
+                    text-align: center;
+                    color: $dark;
+                    opacity: 0;
+                    font-size: 0;
+                    line-height: 1.4;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    transition: opacity .3s linear;
+                    &:hover{
+                        opacity: 1;
+                        font-size: .6rem;
+                    }
+                }
+         }
+        &:hover, &.active{
+            z-index:1;
+            background:$white;
+            color:transparent;
+            transition:.3s;
+            .button-tel-icon{
+                opacity: 0;
+            }
+            .button-tel-content{
+                .text{
+                    opacity: 1;
+                    font-size: .6rem;
+                }
+            }
+        }
+    }   
+    .buttons-socials{
+            position: relative;
+            bottom: 25px;
+            right: 60px;
+            opacity: 0;
+            display: none;
+            transition: opacity .3s linear;
+            &.active{
+                display: flex;
+                flex-direction: row-reverse;
+                opacity: 1;
+                right: 10px;
+                .one-social{
+                    opacity: 1;
+                }
+            }
+            .one-social{
+                opacity: 0;
+                transition: .3s;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background-color: $orange;
+                border: 1px solid $white;
+                cursor: pointer;
+                border-radius: 100px;
+                box-shadow: 0 5px 15px rgba(255,255,0,0.5);
+                margin: 0 5px;
+                position: relative;
+                &:first-child{
+                    margin-left: 0;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+                &:hover, &:focus{
+                    outline: none;
+                    transform: rotate(15deg);
+                }
+                @for $i from 2 through 5 {
+                    &.social-#{$i}{
+                        bottom: $i * 3px;
+                    }
+                }
+                @for $i from 3 through 5 {
+                    &.social-#{$i}{
+                        right: $i * -3px;
+                        bottom: $i * 5px;
+                    }
+                }
+                &.social-4{
+                    right: -25px;
+                    bottom: 40px;
+                }
+                &.social-5{
+                    right: -70px;
+                    bottom: 82px;
+                }
+                &.social-6{
+                    right: -135px;
+                    bottom: 122px;
+                }
+                &.social-7{
+                    right: -222px;
+                    bottom: 143px;
+                }
+                &.social-8{
+                    right: -309px;
+                    bottom: 145px;
+                }
+                &.social-1{
+                    bottom: 20px;
+                    right: 5px;
+                }
+                img{
+                    object-fit: contain;
+                }
+            }
+    }
+    &.active{
+        background-color: rgba(0, 0, 0, 0.75);
+        transition: .6s;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+        z-index: 148;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        .button-tel{
+            bottom: 90px;
+            transition: .6s;
+        }
+        .buttons-socials{
+            position: fixed;
+            &.no-msg{
+                right: 60px;
+                .one-social.social-2{
+                    right: -5px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1008px){
+    .contact-button-wrap .button-tel.active{
+        right: 50px;
+    }
+}
+@media screen and (max-width: 768px){
+    .contact-button-wrap .button-tel, .contact-button-wrap .buttons-socials{
+        right: 15px;
+        bottom: 25px;
+    }
+}
+@-webkit-keyframes hoverWave {
+    0% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 0 transparentize($yellow, 0.8),0 0 0 0 transparentize($yellow, 0.8)
+    }
+    40% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 15px transparentize($yellow, 0.8),0 0 0 0 transparentize($yellow, 0.8)
+    }
+    80% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 30px transparentize($yellow, 0.9),0 0 0 26.7px transparentize($yellow, 0.95)
+    }
+    100% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 30px transparentize($yellow, 0.9),0 0 0 40px transparentize($yellow, 1)
+    }
+}
+@keyframes hoverWave {
+    0% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 0 transparentize($yellow, 0.8),0 0 0 0 transparentize($yellow, 0.8)
+    }
+    40% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 15px transparentize($yellow, 0.8),0 0 0 0 transparentize($yellow, 0.8)
+    }
+    80% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 30px transparentize($yellow, 0.9),0 0 0 26.7px transparentize($yellow, 0.95)
+    }
+    100% {
+            box-shadow:0 8px 10px transparentize($yellow, 0.6),0 0 0 30px transparentize($yellow, 0.9),0 0 0 40px transparentize($yellow, 1)
+    }
+}
+
+/* animations icon */
+
+@keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+            -ms-transform: rotateZ(-30deg);
+            -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+            -ms-transform: rotateZ(15deg);
+            -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+            -ms-transform: rotateZ(-10deg);
+            -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+            -ms-transform: rotateZ(7.5deg);
+            -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+            -ms-transform: rotateZ(-6deg);
+            -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+            -ms-transform: rotateZ(5deg);
+            -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+            -ms-transform: rotateZ(-4.28571deg);
+            -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+            -ms-transform: rotateZ(3.75deg);
+            -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+            -ms-transform: rotateZ(-3.33333deg);
+            -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+}
+
+@-webkit-keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+            -ms-transform: rotateZ(-30deg);
+            -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+            -ms-transform: rotateZ(15deg);
+            -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+            -ms-transform: rotateZ(-10deg);
+            -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+            -ms-transform: rotateZ(7.5deg);
+            -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+            -ms-transform: rotateZ(-6deg);
+            -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+            -ms-transform: rotateZ(5deg);
+            -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+            -ms-transform: rotateZ(-4.28571deg);
+            -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+            -ms-transform: rotateZ(3.75deg);
+            -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+            -ms-transform: rotateZ(-3.33333deg);
+            -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+            -ms-transform: rotateZ(0deg);
+            -webkit-transform: rotateZ(0deg);
+    }
+}
+@media screen and (max-width: 768px){
+    .modal{
+        &, &.modal-form.cf{
+            z-index: 250;
+            overflow-y: scroll;
+            .modal-header, .modal-body{
+                font-size: $regular;
+            }
+            
+        }
+        &.modal-form.cf{
+            form{
+                padding: 0;
+            }
+            padding-top: 230px;
+            padding-bottom: 70px;
+        }
+    }
+}

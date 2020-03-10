@@ -1,0 +1,192 @@
+.we-offer{
+    padding: 150px 0;
+    .servies-global-wrap{
+        padding-top: 30px;
+    }
+    .service{
+        min-height: 250px;
+        height: auto;
+        width: 100%;
+        margin-bottom: 30px;
+        cursor: pointer;
+        box-shadow: 0 0 10px 7px rgba(0, 0, 0, .5);
+        @include font-source-sans( $regular, $black, $weight-normal,  $line-middle, $main-font );
+        transition: .3s;
+        overflow: hidden;
+        position: relative;
+        .service-content{
+             padding: 10px;
+             justify-content: flex-end; 
+             min-height: 250px;
+             height: auto;
+             transition: .3s;
+        }
+        .service-name{
+            font-size: $middler;
+            padding: 10px 0;
+            font-family: $cursive, sans-serif;
+            letter-spacing: 2px;
+            text-transform: lowercase;
+            font-weight: $weight-normal;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-right: none;
+            text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+            background-color: $orange;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            strong{
+                text-align: center;
+                @include push--auto;
+            }
+        }
+    }
+    &.light-theme, &.dark-theme{
+        &.white-bg{
+            @include bg--auto(rgba(255, 255, 255, .8), url(img/adv-block.jpg), cover, no-repeat);
+            background-blend-mode: overlay;
+        }
+    }
+    &.light-theme{
+        &.white-bg{
+            .service{
+                &.no-bg{
+                    background-color: lighten( $light-helper-color, 10% );
+                }
+                &.has-bg{
+                    .service-content{
+                        background-color: transparentize( $third-light-color, .6 );
+                    }
+                    .service-name{
+                        display: flex;
+                        transition: all 0.3s ease-in-out;
+                        color: $second-light-color;
+                    }
+                    .service-text{
+                        display: none;
+                        text-align: center;
+                        transition: all 0.3s ease-in-out;
+                        font-weight: $weight-middler;
+                    }
+                    &:hover, &:focus{
+                        .service-image{
+                            transform: scale(1.1);
+                            transition: .3s;
+                        }
+                        .service-content{
+                            justify-content: center;
+                            background-color: transparentize( $third-light-color, .3 );
+                        }
+                        .service-text{
+                            display: flex;
+                        }
+                        .service-name{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.dark-theme{
+        .section-subheader, .section-subheader*{
+            font-weight: 600;
+        }
+        .section-subheader>p{
+                font-weight: 600;
+        }
+        &.white-bg{
+            background-color: transparentize( $third-dark-color, .3 );
+            background-blend-mode: screen;
+            background-position: right;
+            .service{
+                &.no-bg{
+                    background-color: darken( $third-dark-color, 10% );
+                    color: $first-dark-color;
+                }
+                &.has-bg{
+                    color: $first-dark-color;
+                    .service-content{
+                        background-color: transparentize( $third-dark-color, .6 );
+                    }
+                    .service-name{
+                        display: flex;
+                        transition: all 0.3s ease-in-out;
+                        background-color:  darken( $third-dark-color, 15% );
+                    }
+                    .service-text{
+                        text-align: center;
+                        display: none;
+                        transition: all 0.3s ease-in-out;
+                        font-weight: $weight-middler;
+                    }
+                    &:hover, &:focus{
+                        .service-image{
+                            transform: scale(1.1);
+                            transition: .3s;
+                        }
+                        .service-content{
+                            justify-content: center;
+                            background-color: transparentize( $third-dark-color, .3 );
+                        }
+                        .service-text{
+                            display: flex;
+                        }
+                        .service-name{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.pagination{
+    width: 100%;
+    .nav-links{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    a, a:visited{
+        background-color: $yellow;
+        color: $dark;
+        text-decoration: none;
+        transition: .3s;
+    }
+    a:hover, a:focus{
+        color: $yellow;
+        background-color: transparent;
+    }
+    .page-numbers{
+        height: 30px;
+        width: 30px;
+        border: solid 1px $orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+        font-family: $secondary-font;
+        margin: 0 10px;
+        box-shadow: 0 10px 15px -5px #444;
+        &.next, &.prev{
+            width: auto;
+            padding: 0 10px;
+        }
+    }
+}
+@media screen and ( max-width: 1365px ){
+    .we-offer .service .service-name{
+        font-size: $regular;
+    }
+}
+@media screen and ( max-width: 1023px ){
+    .we-offer{
+        padding: 100px 0;
+        .service .service-name{
+            min-height: 65px;
+            align-items: center;
+        }
+    }
+}

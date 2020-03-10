@@ -1,0 +1,17 @@
+@import '../vars';//variables
+@import '../_mixins/mixins';//mixins
+@import '_components/base';//base styles
+@import '_components/footer';//footer styles
+
+//Gutenberg blocks styles
+@import '_components/site_addon-block';
+@import '_components/main_banner-block';
+@import '_components/site_adv-block';
+@import '_components/site_price-block';
+@import '_components/site_action-block';
+@import '_components/site_portfolio-block';
+@import '_components/site_review-block';
+@import '_components/work_scheme-block';
+@import '_components/site_faq-block';
+@import '_components/form-custom';
+@import '_components/site_contacts-block';

@@ -1,0 +1,176 @@
+section.cf, .modal-form.cf{
+    @include bg--auto($dark, url('img/form-bg.jpg'), cover, no-repeat, overlay); 
+    background-attachment: fixed;
+    box-shadow: 0 -5px 15px -5px rgba(0,0,0,0.6);
+    z-index: 70;
+    position: relative;
+    .section-header{
+        padding-bottom: 15px;
+        *{
+            font-size: $middle + 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    }
+    .header-before{
+        *{
+            font-size: $middler;
+        }
+    }
+    textarea.hd{
+        display: none;
+    }
+    form{
+        padding-top: 25px;
+        &.was-validated{
+            .form-element-validation:valid{
+                box-shadow: 0 0 5px $yellow;
+                border-color: $white;
+            }
+            .form-element-validation:invalid{
+                border-color: $orange;
+                box-shadow: 0 0 5px $orange;
+            }
+            input:invalid, textarea:invalid, .form-control:invalid~.invalid-feedback{
+                .valid-warning-feedback, .valid-feedback{
+                    display: none;
+                }
+                .invalid-feedback{
+                    display: block;
+                }
+            }
+            input:required:valid, textarea:required:valid, .form-control:required:valid~.valid-feedback{
+                .valid-warning-feedback, .invalid-feedback{
+                    display: none;
+                }
+                .valid-feedback{
+                    display: block;
+                }
+            }
+            .validation-group:not( .validated-valid ){
+                 input:optional:valid~.valid-feedback, textarea:optional:valid~.valid-feedback, .form-control:optional:valid~.valid-feedback, input:optional:valid~.invalid-feedback, textarea:optional:valid~.invalid-feedback, .form-control:optional:valid~.invalid-feedback{
+                    display: none;
+                }   
+                input:optional:valid~.valid-warning-feedback, textarea:optional:valid~.valid-warning-feedback, .form-control:optional:valid~.valid-warning-feedback, input:optional:valid~.valid-warning-feedback, textarea:optional:valid~.valid-warning-feedback, .form-control:optional:valid~.valid-warning-feedback{
+                    display: block;
+                }
+            }
+        }
+        
+        .validated-invalid .invalid-feedback{
+            display: block;
+        }
+        .validated-valid .valid-feedback{
+            display: block;
+        }
+        .validated-warning .valid-warning-feedback{
+            display: block;
+        }
+        .validated-warning .valid-feedback{
+            display: none;
+        }
+    }
+    .form-group{
+        margin-bottom: 1.1rem;
+        .form-help{
+            font-size: 0.7rem;
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+        .valid-helper{
+            padding-left: 20px;
+            width: 100%;
+            margin-top: .25rem;
+            font-size: 80%;
+            display: none;
+            &.valid-feedback{
+                color: $yellow;
+            }
+            &.valid-warning-feedback{
+                color: $white;
+            }
+            &.invalid-feedback{
+                color: $orange;
+            }
+        }
+    }
+    input[type=text], input[type=tel], input[type=email], textarea, .input-group .form-control{
+        &, .input-group &{
+            &, &:not( :first-child ), &:not( :last-child ){
+                background: 0 0;
+                border-color: $yellow;
+                border-width: 3px;
+                border-top-right-radius: 20px;
+                border-top-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                border-radius: 20px;
+                font-style: italic;
+                padding: 5px 15px;
+                color: $white;
+                box-shadow: 0 0 5px $white;
+                &:hover, &:focus{
+                    outline: none;
+                    box-shadow: none;
+                    border-color: $third-light-color;
+                    background: 0 0;
+                    color: #fff;
+                }   
+            }   
+        }
+        &.element-was-validated:valid{
+            box-shadow: 0 0 5px $yellow;
+            border-color: $white;
+        }
+        &.element-was-validated:invalid{
+            border-color: $orange;
+            box-shadow: 0 0 5px $orange;
+        }
+    }
+    input[type=text], input[type=tel], input[type=email]{
+        height: 42px;
+    }
+    input[type=submit]{
+            color: $second-light-color;
+            text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+            font-family: $secondary-font;
+            background: $third-light-color;
+            border-radius: 80px;
+            font-size: $middler;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 35px;
+            box-shadow: 0 0 5px $second-light-color;
+            transition: .3s;
+            border: 5px solid $third-light-color;
+            text-transform: uppercase;
+            &:hover, &:focus{
+                text-decoration: none;
+                border-color: $light-helper-color;
+                outline: none;
+            }
+    }
+}
+.modal-form.cf{
+    position: fixed;
+    z-index: 200;
+    background-color: rgba(0,0,0,.7);
+    background-image: none;
+    .form-group .valid-helper{
+        padding-left: 15px;
+        text-align: left;
+    }
+    form{
+        &.was-validated{
+            input:invalid~.invalid-feedback, textarea:invalid~.invalid-feedback, .form-control:invalid~.invalid-feedback{
+                display: block;
+            }
+            input:required:valid~.valid-feedback, textarea:required:valid~.valid-feedback, .form-control:required:valid~.valid-feedback{
+                display: block;
+            }
+            input:optional:valid~.valid-warning-feedback, textarea:optional:valid~.valid-warning-feedback, .form-control:optional:valid~.valid-warning-feedback{
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,289 @@
+.we-portfolio{
+    background-color: $dark;
+    padding-top: 50px;
+    box-shadow: inset 0 15px 15px -15px #fff, inset 0 -15px 15px -15px #fff;
+    .section-header, .section-header *{
+        color: $white;
+    }
+    .pagination-wrapper{
+        margin-top: 0;
+    }
+    /* PHP instagram */
+    .grid-container{
+        display: grid;
+        grid-template-rows: auto;
+        grid-gap: 15px;
+        margin: 0 15px;
+        
+        @for $i from 1 through 6 {
+            &.grid-column-#{$i}{
+                grid-template-columns: repeat( $i, 1fr);
+            }
+        }
+    }    
+    .portfolio-wrap{
+        position: relative;
+        min-height: 360px;
+        height: auto;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 50;
+        .portfolio-image{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            object-fit: cover;
+            transition: .3s;
+            z-index: 60;
+        }
+        .portfolio-content{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 70;
+            background-color: rgba( 0, 0, 0, .6 );
+            display: flex;
+            justify-content: center;
+            @include font-source-sans( $regular, $white, $weight-normal,  $line-middle, $main-font );
+            padding: 15px;
+            word-break: break-word;
+            transition: height .3s linear;
+            .portfolio-text{
+                display: block;
+                opacity: 1;
+                transition: .3s;
+                padding-bottom: 15px;
+            }
+            .portfolio-more{
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                text-transform: uppercase;
+                font-size: $middler;
+                font-family: $secondary-font;
+                letter-spacing: 2px;
+                opacity: 1;
+                position: absolute;
+                bottom: 40px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 5px;
+                text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+                &:before{
+                    content: '';
+                    width: 64px;
+                    height: 64px;
+                    display: block;
+                    margin-right: 10px;
+                    background-image: url(img/icons/search.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+            }
+        }
+        .portfolio-more-link{
+                display: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 70;
+                width: 100%;
+                background-color: rgba(255, 255, 255, .6);
+                border-top: 2px solid rgba(255, 255, 255, .6);
+                width: 100%;
+                padding: 12px 10px;
+                text-align: center;
+                text-transform: uppercase;
+                text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+                transition: .3s;
+                &, &:visited{
+                    @include font-source-sans( $middler, $dark, $weight-normal,  $line-middle, $secondary-font );
+                }
+                &:hover, &:focus{
+                    background-color: $yellow;
+                    border-top-color: $dark;
+                    text-decoration: none;
+                }
+                 &:before{
+                    content: '';
+                    width: 44px;
+                    height: 44px;
+                    display: block;
+                    margin-right: 10px;
+                    background-image: url(img/icons/search-black.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+                
+        }
+        &:hover, &:focus{
+            .portfolio-image{
+                transform: scale(1.1);
+            }
+            .portfolio-content{
+                .portfolio-text, .portfolio-more{
+                    display: none;
+                    opacity: 0;
+                    padding-bottom: 0;
+                }
+                transition: height .3s linear;
+                height: 0;
+                padding: 0 15px;
+            }
+            .portfolio-more-link{
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    .load-more .button{
+        box-shadow: 0 0 5px $white;
+    }
+    .button{
+            @include rounded--button($dark, 100px, relative, $yellow, 10px 30px);
+            margin-top: 15px;
+            box-shadow: 0 0 5px $white;
+            font-size: $middler;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: .3s;
+            border: 5px solid $yellow;
+            font-family: $secondary-font;
+            min-width: 270px;
+            max-width: 100%;
+            &:hover, &:focus{
+                text-decoration: none;
+                border-color: $orange;
+            }
+    }
+}
+/* JS instagram */
+.instagram-feed{
+    .instagram_gallery{
+        display: grid;
+        grid-template-rows: auto;
+        grid-gap: 15px;
+        margin: 0 15px;
+        grid-template-columns: repeat(4, 1fr);
+        .instagram-image, .instagram-video, .instagram-sidecar{
+            position: relative;
+            z-index: 50;
+            &:before{
+                content: '';
+                position: absolute;
+                height: 0;
+                width: 100%;
+                background-color: rgba( 0, 0, 0, .7 ); 
+                z-index: 60;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transition: height .3s linear;
+                display: none;
+            }
+            &:after{
+                content: '';
+                background-image: url(img/icons/search.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 25% 25%;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transition: .3s;
+                display: none;
+            }
+            &:hover, &:focus{
+                &:before{
+                    transition: height .3s linear;
+                    height: 100%;
+                    display: block;
+                }
+                &:after{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+@media screen and ( max-width: 1365px ){
+    .we-portfolio{
+        .grid-container{
+            grid-template-columns: repeat(3, 1fr);
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+       .portfolio-wrap .portfolio-content{
+            .portfolio-more{
+                bottom: 20px;
+            }
+        }
+        .portfolio-wrap .portfolio-more-link{
+            font-size: $regular;
+        }
+    }
+    .instagram-feed{
+        .instagram_gallery{
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+@media screen and ( max-width: 1023px ){
+    .we-portfolio{
+        .grid-container{
+            grid-template-columns: repeat(2, 1fr);
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    }
+    .instagram-feed{
+        .instagram_gallery{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+@media screen and ( max-width: 767px ){
+    .we-portfolio{
+        .grid-container{
+            grid-template-columns: 1fr;
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+    }
+    .instagram-feed{
+        .instagram_gallery{
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}

@@ -1,0 +1,94 @@
+footer{
+    @include bg--auto( $dark, url(img/footer.jpg), cover, no-repeat );
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+    padding: 50px 0;
+    position: relative;
+    z-index: 80;
+    border-top: 2px solid $dark;
+    font-size: $regular;
+    font-family: $main-font;
+    a{
+        text-decoration: none;
+        margin: 0 5px;
+        transition: .3s;
+        color: $white;
+        &:hover, &:focus{
+            text-decoration: none;
+            color: $orange;
+            outline: none;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+    .site-branding{
+        color: $white;
+        .main-part{
+            font-size: $regular + 0.2rem;
+            line-height: 0;
+            font-weight: $weight-light;
+            font-family: $helper-font, sans-serif;
+            letter-spacing: 2px;
+        }
+    }
+    .socials{
+        margin-top: 10px;
+        a{
+            transition: .3s;
+            &:hover, &:focus{
+                img{
+                    transition: .3s;
+                    transform: scale(.9);
+                }
+            }
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+    span{
+        &.body{
+            width: auto;
+        }
+        &.icon{
+            width: 20px;
+            height: 20px;
+            display: block;
+            margin-right: 5px;
+        }
+    }
+    .phones .icon{
+        @include bg--auto( transparent, url(img/icons/f_phone.png), contain, no-repeat );
+    }
+    .emails .icon{
+        @include bg--auto( transparent, url(img/icons/email.png), contain, no-repeat );
+        width: 30px;
+        height: 30px;
+        background-position: center bottom;
+    }
+    .addresses .icon{
+        @include bg--auto( transparent, url(img/icons/f_marker.png), contain, no-repeat );
+    }
+    .footer-bottom{
+        padding-top: 25px;
+    }
+    .arrow{
+        &.to-top{
+            width: 90px;
+            height: 90px;
+            display: block;
+            @include bg--auto( transparent, url(img/icons/arrow-min.png), contain, no-repeat );
+            transition: .3s;
+            &:hover, &:focus{
+                transform: scale(.9);
+            }
+        }
+    }
+}
+@media screen and ( max-width: 767px ){
+    .footer-top{
+        .order-1, .order-2{
+            margin-bottom: 30px;
+        }
+    }
+}

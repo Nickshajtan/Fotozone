@@ -1,0 +1,83 @@
+.error-page, .thanks-page{
+    .site-addon{
+            .section-header{
+                    *{
+                        text-shadow:  2px 4px 6px transparentize( $dark, .65 );
+                    }
+            }
+            .content-wrapper{
+                *{
+                        @include font-source-sans( $regular, $third-dark-color, $weight-middler,  $line-larger, $main-font );
+                        text-shadow:  2px 4px 6px transparentize( $dark, .65 );
+                 }
+            }
+            .content{
+                padding-bottom: 1.5rem;
+                *{
+                    font-size: $middler;
+                }
+            }
+            &.light-theme{
+                .content-wrapper{
+                    .link-wrapper{
+                        margin-bottom: 30px;
+                        a{
+                             @include rounded--button($dark, 100px, relative, $third-light-color, 15px 20px);
+                             box-shadow:  2px 4px 6px $dark;
+                             border: 2px solid $light-helper-color;
+                             text-shadow: none;
+                             text-transform: uppercase;
+                             transition: .3s;
+                             font-family: $secondary-font;
+                             letter-spacing: 2px;
+                             text-align: center;
+                             &:focus, &:hover{
+                                 background-color: $light-helper-color;   
+                                 text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+                             }
+                        }
+                    }
+                }
+            }
+            &.dark-theme{
+                .content-wrapper{
+                    .link-wrapper{
+                        margin-bottom: 30px;
+                        a{
+                             @include rounded--button($second-dark-color, 100px, relative, $third-dark-color, 15px 20px);
+                             box-shadow:  2px 4px 6px $dark;
+                             border: 2px solid $third-dark-color;
+                             text-shadow: none;
+                             text-transform: uppercase;
+                             text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+                             transition: .3s;
+                             font-family: $secondary-font;
+                             letter-spacing: 2px;
+                             text-align: center;
+                             &:focus, &:hover{
+                                 background-color: $transparent;   
+                                 color: $dark;
+                             }
+                        }
+                    }
+                }
+                .thumbnail-wrapper{
+                    img{
+                        filter: saturate(0.5);
+                        box-shadow:  2px 4px 6px $dark;
+                        transition: .3s;
+                        cursor: pointer;
+                        border: 2px solid $transparent;
+                        &:hover{
+                             border: 2px solid $third-dark-color;   
+                        }
+                    }
+                }
+            }
+    }
+}
+.site-addon{
+    .content{
+                padding-bottom: 1.5rem;
+            }
+}

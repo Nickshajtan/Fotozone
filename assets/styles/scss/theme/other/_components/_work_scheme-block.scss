@@ -1,0 +1,69 @@
+.we-work{
+    background-attachment: fixed;
+    .img-wrapper{
+        height: 80px;
+        width: 80px;
+        border-radius: 100px;
+    }
+    .about-scheme{
+        display: block;
+        margin-top: 10px;
+    }
+    &.light-theme, &.dark-theme{
+        &.color-bg{
+            .section-header, .section-header *{
+                font-size: $big - 0.2rem;
+                text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+            }
+        }
+    }
+    &.light-theme{
+        &.color-bg{
+            background-image: linear-gradient(left, darken($third-light-color, 10%), darken( $third-light-color, 45% ) ), url(img/work-scheme.jpg);
+        }
+        .img-wrapper{
+            background-color: $light-helper-color;
+            box-shadow: 0 0px 15px 0px #444;
+        }
+        .about-scheme, .about-scheme *{
+             @include font-source-sans( $regular, $first-light-color, $weight-middler,  $line-middle, $main-font );
+        }
+    }
+    &.dark-theme{
+        &.color-bg{
+            background-image: linear-gradient(left, darken($dark-helper-color, 10%), darken( $dark-helper-color, 45% ) ), url(img/work-scheme.jpg);
+            background-blend-mode: multiply;
+        }
+        .img-wrapper{
+            background-color: lighten($third-dark-color, 5%);
+            box-shadow: 0 0px 15px 0px #ccc;
+        }
+        .about-scheme, .about-scheme *{
+             @include font-source-sans( $regular, $first-dark-color, $weight-middler,  $line-middle, $main-font );
+        }
+    }
+}
+@media screen and ( max-width: 1023px ){
+    .we-work{
+        &, &.light-theme, &.dark-theme{
+            &, &.color-bg{
+                .section-header *{
+                    font-size: $middle;
+                    line-height: $line-middle;
+                }
+            }
+        }
+    }
+}
+@media screen and ( max-width: 767px ){
+    .we-work{
+        &, &.light-theme, &.dark-theme{
+            &, &.color-bg{
+                .section-header *{
+                    font-size: $middler;
+                    line-height: $line-middler;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,84 @@
+.we-review{
+    &.light-theme{
+        &.white-bg{
+            background-image: url(img/arts/konfetty.png);
+            background-color: rgba(255,255,255,0.55);
+        }
+    }
+    .reviews-wrap{
+        padding-top: 30px;
+        position: relative;
+    }
+    .review-arrows{
+        position: absolute;
+        top: 45%;
+        align-items: center;
+        z-index: 60;
+    }
+    .review-arrow{
+        display: block;
+        width: 60px;
+        height: 60px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(255,255,255,0.95);
+        box-shadow: 0 5px 15px rgba(0,0,0,.4);
+        transition: .3s;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        &.review-next{
+            background-image: url(img/icons/a-right-min.png);
+            right: 0;
+        }
+        &.review-prev{
+            background-image: url(img/icons/a-left-min.png);
+            left: 0;
+        }
+    }
+    .review-image{
+            border: 30px solid #fff;
+            border-left-width: 14px;
+            border-right-width: 14px;
+            border-radius: 15px;
+            border-image: url(img/phone-frame.png) 25% round;
+            border-image-repeat: stretch;
+            box-sizing: content-box;
+            //border-image-outset: 30px 14px;
+    }
+}
+@media screen and ( max-width: 1023px ){
+    .we-review .reviews-wrap{
+        padding: 0;
+        margin-left: -15px;
+    }
+    .we-review .review-arrow.review-next{
+        right: -15px;
+    }
+}
+@media screen and ( max-width: 767px ){
+    .we-review{
+        .reviews-wrap{
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
+            min-height: 600px;
+            .reviews-slider{
+                margin-left: -35px;
+            }
+        }
+        .review-arrows{
+            top: auto;
+            padding-top: 20px;
+            .review-arrow{
+                &.review-prev{
+                    left: 20px;
+                }
+                &.review-next{
+                    right: 20px;
+                }   
+            }
+        }
+    }
+}

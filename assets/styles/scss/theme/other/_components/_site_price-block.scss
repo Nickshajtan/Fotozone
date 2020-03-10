@@ -1,0 +1,166 @@
+.we-price{
+    background-attachment: fixed;
+    .section-header, .section-header *{
+        text-shadow: 2px 4px 6px rgba(11,9,9,0.35);
+    }
+    .prices-wrap{
+        padding-top: 30px;
+    }
+    .position{
+        margin-bottom: 30px;
+    }
+    @for $i from 1 through 15 {
+        .position-#{$i} {
+            $length: 0;
+            @if $i == 3 {
+                $length: ($i - 1) * 20px;   
+            }
+            @else if $i == 4 {
+                $length: ($i - 3) * 20px;   
+            }
+            @else{
+                $length: $i * 20px;   
+            }
+           // margin-top: $length;
+        }
+    }
+    .price-block{
+        border-radius: 5px;
+        padding: 15px;
+        padding-bottom: 60px;
+        min-height: 320px;
+        height: auto;
+        position: relative;
+        .order{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transition: all 0.3s ease-in-out;
+            height: 54px;
+            &:hover, &:focus{
+                height: 60px;
+                a{
+                   // top: 5px;
+                }
+            }
+            a{
+                font-size: $middler - .3rem;  
+                text-transform: uppercase;
+                text-decoration: none;
+                position: relative;
+                transition: all 0.3s ease-in-out;
+                &:hover, &:focus{
+                        text-decoration: none;
+                        outline: none;
+                }
+            }
+        }
+    }
+    &.light-theme{
+        &.color-bg{   
+             background-image: linear-gradient(left, darken($third-light-color, 10%), darken( $third-light-color, 45% ) ), url(img/price-block.jpg);
+        }
+        .price-block {
+            background-color: $dark;
+            box-shadow: 0 0px 15px 0px #444;
+            @include font-source-sans( $regular - 0.15rem, $second-light-color, $weight-normal,  $line-middle, $main-font );
+            .order{
+                background-color: $second-light-color;
+                border: 1px solid $dark;
+                border-top: 2px solid $third-light-color;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                padding: 8px 0 15px 0;
+                cursor: pointer;
+                a{
+                    @include rounded--button($dark, 100px, relative, $light-helper-color, 7px 15px);
+                    box-shadow: 0 10px 15px -5px #444;
+                    text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.35);
+                    margin-top: 0;
+                    font-family: $secondary-font;
+                }
+            }
+        }
+        .price-title{
+            font-size: $middler;   
+            color: $third-light-color;
+            text-transform: uppercase;
+        }
+        .price-text{
+            padding: 15px 0;
+        }
+        .price-desc{
+             @include font-source-sans( $regular, $second-light-color, $weight-normal,  $line-middle, $main-font );
+             padding: 10px 0;
+        }
+        .price-price{
+            @include font-source-sans( $middle, $light-helper-color, $weight-normal,  $line-middle, $secondary-font );
+            letter-spacing: 2px;
+            &.price-old{
+                color: $third-light-color;
+                font-size: $regular + 0.1rem;
+            }
+        }
+    }
+    &.dark-theme{
+        .section-subheader, .section-subheader*{
+            font-weight: 600;
+            color: $first-dark-color;
+        }
+        .section-subheader>p{
+            font-weight: 600;
+            color: $first-dark-color;
+        }
+        &.color-bg{
+            background-image: linear-gradient(left, darken($dark-helper-color, 10%), darken( $dark-helper-color, 45% ) ), url(img/price-block.jpg);
+            background-blend-mode: multiply;
+        }
+        .price-block {
+            background-color: transparentize( $dark, .1 );
+            box-shadow: 0 0px 15px 0px #444;
+            @include font-source-sans( $regular - 0.15rem, $first-dark-color, $weight-normal,  $line-middle, $main-font );
+            .order{
+                background-color: $third-dark-color;
+                border: 1px solid $dark;
+                border-top: 2px solid $dark-helper-color;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                padding: 8px 0 15px 0;
+                cursor: pointer;
+                a{
+                    @include rounded--button($first-dark-color, 100px, relative, $dark, 7px 15x);
+                    box-shadow: 0 10px 15px -5px #444;
+                    margin-top: 0;
+                    color: $first-dark-color;
+                    font-family: $secondary-font;
+                    text-shadow: 2px 4px 6px rgba(255, 255, 255, 0.35);
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            }
+        }
+        .price-title{
+            font-size: $middler;   
+            color: $dark-helper-color;
+            text-transform: uppercase;
+        }
+        .price-text{
+            padding: 15px 0;
+        }
+        .price-desc{
+             @include font-source-sans( $regular, $first-dark-color, $weight-normal,  $line-middle, $main-font );
+             padding: 10px 0;
+        }
+        .price-price{
+            @include font-source-sans( $middle, $third-dark-color, $weight-normal,  $line-middle, $secondary-font );
+            letter-spacing: 2px;
+            &.price-old{
+                color: $dark-helper-color;
+                font-size: $regular + 0.1rem;
+            }
+        }
+    }
+}

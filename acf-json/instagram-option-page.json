@@ -1,0 +1,725 @@
+[
+    {
+        "key": "group_5e56793d042db",
+        "title": "Instagram : Страница опций",
+        "fields": [
+            {
+                "key": "field_5e56796320267",
+                "label": "Общие",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_5e567c1ac03bc",
+                "label": "Instagram API",
+                "name": "instagram_api",
+                "type": "radio",
+                "instructions": "Использовать ли Instagram API на сайте. Должно быть зарегистрировано приложение на платформе Facebook и настроено на Instagram",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "enable": "Использовать",
+                    "disable": "Не использовать"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "disable",
+                "layout": "horizontal",
+                "return_format": "value",
+                "save_other_choice": 0
+            },
+            {
+                "key": "field_5e567e5574176",
+                "label": "Тип подключения",
+                "name": "instagram_include_type",
+                "type": "radio",
+                "instructions": "Выберите тип подключения из предложенных вариантов и перейдите к детальным настройкам подключения во вкладке, что будет соответствовать выбранному Вами типу подключения.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "php": "PHP - раз в указанное время сохраняет контент в посты типа Портфолио",
+                    "js": "JS - Подключение в реальном времени. Не сохраняет контент в посты Портфолио"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "js",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
+            },
+            {
+                "key": "field_5e5b0783a3a34",
+                "label": "Основные параметры приложения",
+                "name": "main_options",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567c1ac03bc",
+                            "operator": "==",
+                            "value": "enable"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e5b08a8fb28b",
+                        "label": "ID приложения",
+                        "name": "client_id",
+                        "type": "text",
+                        "instructions": "Ваш CLIENT-ID согласно Basic Display API Instagram",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5b08ebfb28c",
+                        "label": "Секрет-key приложения",
+                        "name": "client_key",
+                        "type": "text",
+                        "instructions": "Ваш YOUR-CLIENT-SECRET согласно Basic Display API Instagram",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5b0932fb28d",
+                        "label": "Код приложения",
+                        "name": "client_code",
+                        "type": "text",
+                        "instructions": "Ваш YOUR-CODE согласно Basic Display API Instagram",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5b0953fb28e",
+                        "label": "Страница редиректа",
+                        "name": "redirect",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_5e567986acae0",
+                "label": "PHP подключение",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "php"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_5e568175134e2",
+                "label": "Опции подключения",
+                "name": "inst_php_api_disabled",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567c1ac03bc",
+                            "operator": "==",
+                            "value": "disable"
+                        },
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "php"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e590c9e98faa",
+                        "label": "Внимание!",
+                        "name": "",
+                        "type": "message",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "При использовании этой функции может возрасти нагрузка на Ваш сервер",
+                        "new_lines": "wpautop",
+                        "esc_html": 0
+                    },
+                    {
+                        "key": "field_5e58ed33b63dd",
+                        "label": "Выводить контент по имени пользователя:",
+                        "name": "name",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e58ed2fb63dc",
+                        "label": "Хост",
+                        "name": "host",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "https:\/\/www.instagram.com\/",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_5e5af2a97cc7c",
+                "label": "Опции подключения PHP API : DEMO",
+                "name": "inst_php_api_enabled",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567c1ac03bc",
+                            "operator": "==",
+                            "value": "disable"
+                        },
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "php"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e5af2a97cc7d",
+                        "label": "Внимание!",
+                        "name": "",
+                        "type": "message",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "При использовании этой функции может возрасти нагрузка на Ваш сервер",
+                        "new_lines": "wpautop",
+                        "esc_html": 0
+                    },
+                    {
+                        "key": "field_5e5af3dbec901",
+                        "label": "Токен доступа",
+                        "name": "token",
+                        "type": "text",
+                        "instructions": "Введите токен доступа Вашего аккаунта согласно Basic Display API Instagram",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5af2a97cc7e",
+                        "label": "Выводить контент по ID пользователя:",
+                        "name": "name",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5af2aa7cc7f",
+                        "label": "Хост",
+                        "name": "host",
+                        "type": "text",
+                        "instructions": "Согласно Basic Display Instagram API введите https:\/\/api.instagram.com или graph.instagram.com",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "https:\/\/api.instagram.com\/",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5af2cd7cc81",
+                        "label": "Копировать фото :",
+                        "name": "limit",
+                        "type": "number",
+                        "instructions": "Укажите какое число фото необходимо скопировать с Instagram в базу сайта за один cron (промежуток времени). По умолчанию 12",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_5e567985acadf",
+                "label": "JS подключение",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "js"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0
+            },
+            {
+                "key": "field_5e568132134e1",
+                "label": "Опции подключения",
+                "name": "inst_js_api_disabled",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567c1ac03bc",
+                            "operator": "==",
+                            "value": "disable"
+                        },
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "js"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e5681f9e7b6d",
+                        "label": "Выводить контент по имени пользователя:",
+                        "name": "name",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5682475ba4c",
+                        "label": "Выводить контент по метке:",
+                        "name": "tag",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5682725ba4d",
+                        "label": "Количество изображений",
+                        "name": "items",
+                        "type": "number",
+                        "instructions": "При выключенном API Instagram ограничено 20-ю позициями",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 21,
+                        "step": ""
+                    },
+                    {
+                        "key": "field_5e5682c95ba4e",
+                        "label": "Количество изображений в ряд",
+                        "name": "row",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 6,
+                        "step": ""
+                    },
+                    {
+                        "key": "field_5e5682da5ba4f",
+                        "label": "Хост",
+                        "name": "host",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "https:\/\/www.instagram.com\/",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_5e5a8eaa64b5d",
+                "label": "Опции подключения JS API : DEMO",
+                "name": "inst_js_api_enabled",
+                "type": "group",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_5e567c1ac03bc",
+                            "operator": "==",
+                            "value": "enable"
+                        },
+                        {
+                            "field": "field_5e567e5574176",
+                            "operator": "==",
+                            "value": "js"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "sub_fields": [
+                    {
+                        "key": "field_5e5a8eaa64b5e",
+                        "label": "Выводить контент по имени пользователя:",
+                        "name": "name",
+                        "type": "text",
+                        "instructions": "Введите имя пользователя Instagram",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5a8eaa64b5f",
+                        "label": "Выводить контент по метке:",
+                        "name": "tag",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5a8eaa64b60",
+                        "label": "Количество изображений",
+                        "name": "items",
+                        "type": "number",
+                        "instructions": "По умолчанию 6",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 21,
+                        "step": ""
+                    },
+                    {
+                        "key": "field_5e5a8eaa64b61",
+                        "label": "Количество изображений в ряд",
+                        "name": "row",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": 1,
+                        "max": 6,
+                        "step": ""
+                    },
+                    {
+                        "key": "field_5e5a8eaa64b62",
+                        "label": "Хост",
+                        "name": "host",
+                        "type": "text",
+                        "instructions": "Согласно Basic Display Instagram API введите https:\/\/api.instagram.com или graph.instagram.com",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "https:\/\/api.instagram.com\/",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_5e5a8edb64b63",
+                        "label": "Токен доступа",
+                        "name": "token",
+                        "type": "text",
+                        "instructions": "Введите токен доступа Вашего аккаунта согласно Basic Display API Instagram",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "options_page",
+                    "operator": "==",
+                    "value": "acf-options-instagram"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    }
+]

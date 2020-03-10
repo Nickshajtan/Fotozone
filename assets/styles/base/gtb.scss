@@ -1,0 +1,24 @@
+/* Main column width */
+.wp-block {
+	max-width: 100%;
+}
+
+.block-editor-block-list__layout .block-editor-block-list__block:not(.is-selected)>.block-editor-block-list__block-edit:before{
+	outline: 1px solid rgba(gray,.2);
+}
+
+div[data-block] div[class*='preview']{
+	@import '../../public/base-theme-styles.min.css';
+	@import '../../public/less-header-theme-styles.min.css';
+	@import '../../public/less-other-theme-styles.min.css';
+	@import '../../public/less-vendor-styles.min.css';
+    @import '../../public/sass-header-theme-styles.min.css';
+	@import '../../public/sass-other-theme-styles.min.css';
+	@import '../../public/sass-vendor-styles.min.css';
+    @import '../../public/scss-header-theme-styles.min.css';
+	@import '../../public/scss-other-theme-styles.min.css';
+	@import '../../public/scss-vendor-styles.min.css';
+    @import '../../public/stylus-header-theme-styles.min.css';
+	@import '../../public/stylus-other-theme-styles.min.css';
+	@import '../../public/stylus-vendor-styles.min.css';
+}
