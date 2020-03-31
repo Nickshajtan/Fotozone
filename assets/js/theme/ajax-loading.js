@@ -64,6 +64,7 @@ function ajaxMore( element, query_posts, current_page, max_pages, url ){
             }
         }).done(function (){
             loader.removeClass('active');
+            textParam.removeClass('active');
         });
     });
 }

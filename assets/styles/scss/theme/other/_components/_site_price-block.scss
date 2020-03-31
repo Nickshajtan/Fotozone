@@ -8,6 +8,8 @@
     }
     .position{
         margin-bottom: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     @for $i from 1 through 15 {
         .position-#{$i} {
@@ -28,9 +30,22 @@
         border-radius: 5px;
         padding: 15px;
         padding-bottom: 60px;
-        min-height: 320px;
-        height: auto;
         position: relative;
+        height: 350px;
+        overflow: hidden;
+        max-height: 350px;
+        min-height: 350px;
+        transition: .4s linear height;
+        cursor: pointer;
+        &.active, &:hover, &:focus{
+            height: auto;
+            max-height: none;
+            position: absolute;
+            z-index: 10;
+            left: 5px;
+            right: 5px;
+            transition: .4s linear height;
+        }
         .order{
             position: absolute;
             bottom: 0;
@@ -55,6 +70,13 @@
                         outline: none;
                 }
             }
+        }
+        .morecontent span:not(.morelink){
+                display: none;
+        }
+        .morecontent .morelink{
+            color: $yellow;
+            font-size: 120%;
         }
     }
     &.light-theme{
@@ -86,6 +108,7 @@
             font-size: $middler;   
             color: $third-light-color;
             text-transform: uppercase;
+            min-height: 60px;
         }
         .price-text{
             padding: 15px 0;
@@ -146,6 +169,7 @@
             font-size: $middler;   
             color: $dark-helper-color;
             text-transform: uppercase;
+            min-height: 60px;
         }
         .price-text{
             padding: 15px 0;

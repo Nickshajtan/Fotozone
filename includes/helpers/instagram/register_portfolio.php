@@ -197,8 +197,11 @@ function SetPortfolioImg( $filename, $local_url, $type, $post_id ){
     if( is_wp_error( $attach_data ) ){
                 echo $attach_data->get_error_message('fallen');
     }
-    wp_update_attachment_metadata( $attach_id, $attach_data );
-    $set_img = set_post_thumbnail( $post_id, $attach_id );
+    $metadata = wp_update_attachment_metadata( $attach_id, $attach_data );
+    if( $metadata && has_post_thumbnail( $post_id ) ){
+        wp_delete_attachment( get_post_thumbnail_id( $post_id ), false );
+    }
+    $set_img  = set_post_thumbnail( $post_id, $attach_id );
     if( is_wp_error( $set_img ) ){
                 echo $set_img->get_error_message('fallen');
     }

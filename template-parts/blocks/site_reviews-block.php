@@ -61,8 +61,8 @@ if( $block ) : ?>
                           setup_postdata($post); 
                           $image = get_field('image', $post->ID);
                               if( $image ) : ?>
-                                   <a href="<?php echo esc_url( aq_resize( $image['url'], 450, 600, true, true, true) ); ?>" data-fancybox='group' class='fancybox review-modal'>
-                                       <img src="<?php echo esc_url( aq_resize( $image['url'], 250, 400, true, true, true) ); ?>" title="<?php echo esc_attr( $image['title'] ) ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" data-title="<?php echo wp_kses_post( get_the_title() ); ?>" class="review-image">
+                                   <a href="<?php echo esc_url( aq_resize( $image['url'], 500, 800, false, true, true) ); ?>" data-fancybox='group' class='fancybox review-modal'>
+                                       <img src="<?php echo esc_url( aq_resize( $image['url'], 250, 400, false, true, true) ); ?>" title="<?php echo esc_attr( $image['title'] ) ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" data-title="<?php echo wp_kses_post( trim( get_the_title() ) ); ?>" class="review-image">
                                    </a>
                               <?php endif; ?>
                         <?php endforeach; ?> 

@@ -1,6 +1,7 @@
 <?php 
-/**
- * Set up a WP-Admin page for managing turning on and off theme features.
+/*
+ * Set up a theme WP-Admin page for managing turning on and off theme features.
+ * 
  */
 function hcc_theme_add_options_page() {
 	add_theme_page(
@@ -13,12 +14,20 @@ function hcc_theme_add_options_page() {
 
 	// Call register settings function
 	add_action( 'admin_init', 'hcc_theme_options' );
+    /*
+     * Set admin notices
+     * 
+     */
+    if( !empty( $_REQUEST['settings-updated'] ) ){
+            add_action( 'admin_notices', 'hcc_saved_notice' );   
+    }
 }
 add_action( 'admin_menu', 'hcc_theme_add_options_page' );
 
 
-/**
+/*
  * Register settings for the WP-Admin page.
+ * 
  */
 function hcc_theme_options() {
     // wordpress cleanup
@@ -61,8 +70,9 @@ function hcc_cf_options_fields(){}
 function hcc_mf_options_fields(){}
 
 
-/**
+/*
  * Build the WP-Admin settings page.
+ * 
  */
 function hcc_admin_tabs( $active_tab = 'wordpress' ) {
     $tabs = array( 'wordpress' => 'WordPress', 'gutenberg' => 'Gutenberg', 'contact-form' =>  __('Contact form', 'hcc') );
@@ -107,112 +117,36 @@ function hcc_theme_options_page() {
                 <input type="hidden" name="hcc-settings-submit" value="Y" />
         </div>
         <?php echo '</form></div>';
-}
-
-function hcc_save_theme_settings() {
-    global $pagenow;
-    
-    if ( $pagenow == 'themes.php' && $_GET['page'] == 'hcc-theme-options' ){
-        if ( isset ( $_GET['tab'] ) ) $active_tab = $_GET['tab'];
-        else $active_tab = 'wordpress';
-        switch ( $active_tab ){
-                    case 'wordpress' :
-                        $new_cleanup = $_POST['hcc-theme-wp-cleanup'];
-                        if( isset( $new_cleanup ) ){
-                            update_option('hcc-theme-wp-cleanup', $new_cleanup );
-                        }
-                        $new_blog_dn = $_POST['hcc-theme-wp-blog-dn'];
-                        if( isset( $new_blog_dn ) ){
-                            update_option('hcc-theme-wp-blog-dn', $new_blog_dn);
-                        }
-                        break;
-                    case 'gutenberg' :
-                        $new_pt = $_POST['hcc-theme-gtb-pt[]'];
-                        if( isset( $new_pt ) ){
-                            update_option('hcc-theme-gtb-pt', $new_pt);
-                        }
-                        $new_tmpl = $_POST['hcc-theme-gtb-tmpl[]'];
-                        if( isset( $new_tmpl ) ){
-                            update_option('hcc-theme-gtb-tmpl', $new_tmpl);
-                        }
-                        break;
-                    case 'contact-form' :
-                
-                        $new_demo = $_POST['hcc-theme-cf-demo'];
-                        if( isset( $new_demo ) ){
-                            update_option('hcc-theme-cf-demo', $new_demo );
-                        }
-                        $new_thanks = $_POST['hcc-theme-cf-thanks'];
-                        if( isset( $new_thanks ) ){
-                            update_option('hcc-theme-cf-thanks', $new_thanks );
-                        }
-                        $new_cf_email = $_POST['hcc-theme-cf-email'];
-                        if( isset( $new_cf_email ) ){
-                            update_option('hcc-theme-cf-email', $new_cf_email );
-                        }
-                        $new_cf_save = $_POST['hcc-theme-cf-panel-save'];
-                        if( isset( $new_cf_save ) ){
-                            update_option('hcc-theme-cf-panel-save', $new_cf_save );
-                        }
-                        $new_cf_modal = $_POST['hcc-theme-cf-modal'];
-                        if( isset( $new_cf_modal ) ){
-                            update_option('hcc-theme-cf-modal', $new_cf_modal );
-                        }
-                        $new_cf_title = $_POST['hcc-theme-cf-modal-title'];
-                        if( isset( $new_cf_title ) ){
-                            update_option('hcc-theme-cf-modal-title', $new_cf_title );
-                        }
-
-                        break;
-        }
-        
-    }
+           
     
 }
 
-function hcc_load_settings_page() {
-     if ( $_POST['hcc-settings-submit'] == 'Y' ) {
-         check_admin_referer( 'hcc-theme-options' );
-         hcc_save_theme_settings();
-         $url_parameters = isset($_GET['tab'])? 'updated=true&tab='.$_GET['tab'] : 'updated=true';
-         wp_redirect(admin_url('themes.php?page=hcc-theme-options&'.$url_parameters));
-         exit;
-     }
-}
-
-/**
- * Disable gutenberg for selected post types
+/*
+ * Disable gutenberg for selected templates or selected post types 
+ *
  */
-add_filter( 'use_block_editor_for_post_type', 'hcc_disable_gtn_pt', 10, 2 );
-function hcc_disable_gtn_pt( $is_enabled, $post_type ) {
-	$disable_gtb_types = get_option('hcc-theme-gtb-pt');
-	if (empty($disable_gtb_types)) {
-		$disable_gtb_types = array();
-	}
-	if ( in_array( $post_type, array_values($disable_gtb_types), true ) ) {
-		return false;
-	}
-	return $is_enabled;
-}
-
-/**
- * Disable gutenberg for selected templates
- */
-
-add_filter('use_block_editor_for_post', 'hcc_disable_gtn_tmpl', 10, 2);
+add_filter('use_block_editor_for_post', 'hcc_disable_gtn_tmpl', 10, 3);
 function hcc_disable_gtn_tmpl($can_edit, $post) {
 	$disable_gtb_tmpls = get_option('hcc-theme-gtb-tmpl');
-	if (empty($disable_gtb_tmpls)) {
-		$disable_gtb_tmpls = array();
+    $disable_gtb_types = get_option('hcc-theme-gtb-pt');
+    if ( isset( $post->post_name ) && ( $post->post_name == 'error-404' ) ) {
+		return false;
 	}
-	if ( in_array( get_page_template_slug($post->ID), array_values($disable_gtb_tmpls), true ) ) {
+    if (empty($disable_gtb_types)) {
+		$disable_gtb_types = array();
+	}
+	if (empty($disable_gtb_tmpls)) {
+		$disable_gtb_tmpls = array('templates/template-acf-flexible.php', 'template-acf-flexible.php');
+	}
+	if ( in_array( get_page_template_slug( $post->ID ), array_values($disable_gtb_tmpls), true ) || in_array( get_post_type( $post->ID ), array_values($disable_gtb_types), true ) ) {
 		return false;
 	}
 	return $can_edit;
 }
 
-/**
+/*
  * Incude and run wordpress cleanup file
+ * 
  */
 add_action( 'after_setup_theme', 'hcc_wordpress_cleanup' );
 function hcc_wordpress_cleanup(){
@@ -224,8 +158,9 @@ function hcc_wordpress_cleanup(){
 	}
 }
 
-/**
+/*
  * Disable/Enable WP blog functionality
+ *
  */
 add_action( 'after_setup_theme', 'hcc_disable_blog_features' );
 function hcc_disable_blog_features(){
@@ -258,25 +193,36 @@ function hcc_disable_blog_features(){
     }
 }
 
-/**
+/*
  * enqueue admin assets
+ * 
  */
-//add_action( 'admin_enqueue_scripts', 'hcc_enqueue_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'hcc_enqueue_admin_scripts' );
 function hcc_enqueue_admin_scripts($hook_suffix) {
-	if($hook_suffix == 'appearance_page_hcc-theme-options') {
+	if( get_current_screen()->parent_base !== 'hcc-instructions' || $hook_suffix == 'appearance_page_hcc-theme-options' || $hook_suffix == 'appearance_page_hcc-instructions') {
 		if ( ! did_action( 'wp_enqueue_media' ) ) {
 			wp_enqueue_media();
 		}
-		wp_enqueue_script( 'myupload-script', THEME_STYLE_URI . '/includes/admin/assets/admin.js', array('jquery'), null, false );
+        wp_register_script( 'hcc-upload-script', THEME_STYLE_URI . '/includes/config/admin/assets/js/admin.min.js', array('jquery'), null, false  );
+        wp_localize_script( 'hcc-upload-script', 'hcc_upload_params', array(
+		      'ajaxurl'    => SITE_URL . '/wp-admin/admin-ajax.php',
+		      'btn_upload' => __('Upload image', 'hcc'),
+		      'btn_title'  => __('Insert image', 'hcc'),
+		      'btn_use'    => __('Use this image', 'hcc'),
+		      'btn_remove' => __('Remove image', 'hcc'),
+        ));
+		wp_enqueue_script( 'hcc-upload-script' );
 	}
-	wp_register_script( 'activation-script', THEME_STYLE_URI . '/includes/admin/assets/activation.js', array('jquery'), null, false );
+	wp_register_script( 'activation-script', THEME_STYLE_URI . '/includes/config/admin/assets/js/activation.min.js', array('jquery'), null, false );
+    wp_enqueue_script( 'activation-script' );
 }
 
-/**
- * image uploader
+/*
+ * Include image uploader
+ * return html code
  */
 function hcc_image_uploader_field( $name, $value = '') {
-	$image = ' button">Upload image';
+	$image = ' button">' . __('Upload image', 'hcc');
 	$image_size = 'thumbnail'; // it would be better to use thumbnail size here (150x150 or so)
 	$display = 'none'; // display state ot the "Remove image" button
 	if( $image_attributes = wp_get_attachment_image_src( $value, $image_size ) ) {

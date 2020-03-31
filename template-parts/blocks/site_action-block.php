@@ -31,12 +31,20 @@ if( $link ){
     $link_target = $link['target'] ? $link['target'] : '_self';
 }
 $timer = wp_kses_post( $block['timer'] );
-$time = date('j', strtotime($timer) ) - date('j');
+$time  = wp_date( 'Y-m-d', strtotime($timer) - time() );
+$daTe  = strtotime($timer) - time(); 
 
 if( !empty( $timer ) ){
     if( !empty( $time ) && ( $time > 0 ) ){
         $deadline = $timer;
     }
+	else{
+		$days 	  = floor($daTe/86400);
+	    $hours    = floor(($daTe%86400)/3600);
+	    $minutes  = floor(($daTe%3600)/60);
+	    $seconds  = $timer%60;
+		$deadline = $days . "-" . $hours  . "-" . $minutes;
+	}
 }
 
 if( $block ) : ?>

@@ -85,7 +85,7 @@ if( $block ) : ?>
                       <div class="d-flex col-12 col-md-6 col-lg-4 col-xl-3 position position-<?php echo abs( $count ); ?> <?php echo ( $count % 2 == 0 ) ? 'even' : 'odd'; ?>">
                         <div class="price-block ml-auto mr-auto">
                               <?php if( $title ) : ?>
-                                  <strong class="text-center w-100 d-block price-title"><?php echo $title; ?></strong>
+                                  <strong class="text-center w-100 d-flex align-items-center justify-content-center price-title"><?php echo $title; ?></strong>
                               <?php endif; ?>
                               <?php if( $text ) : ?>
                                   <div class="text-center w-100 d-block price-text"><?php echo $text; ?></div>

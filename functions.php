@@ -28,10 +28,15 @@ get_template_part('includes/helpers/theme_ajax');
 if ( !is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
     get_template_part('includes/helpers/contact_form');
 }
+get_template_part('includes/helpers/gutenberg/gutenberg'); 
 get_template_part('includes/helpers/acf_helpers');
 get_template_part('includes/helpers/aq_resizer');
-get_template_part('includes/helpers/gutenberg/gutenberg'); 
+get_template_part('includes/helpers/theme_metaboxes'); 
 get_template_part('includes/helpers/instagram'); 
+get_template_part('includes/helpers/theme_customizer'); 
+if ( !is_plugin_active( 'wordpress-seo/wp-seo.php' ) ) {
+    get_template_part('includes/helpers/yoast_helpers'); 
+}
     
 if ( is_plugin_active( 'woocommerce/woocommerce.php' ) || in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
    get_template_part('includes/helpers/woo_helpers');
@@ -39,6 +44,7 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) || in_array( 'woocommerce
 
 /* -- config -- */
 get_template_part('includes/config/hcc_setup');
+get_template_part('includes/config/instructions_page');
 get_template_part('includes/config/admin/general-edits');
 get_template_part('includes/config/admin/theme-options');
 

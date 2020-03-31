@@ -42,9 +42,10 @@ header{
             right:  0;
             transition: width .3s ease-in-out;
         }
-        &:hover, &:focus{
+        &:hover, &:focus, &.current-link{
             text-decoration: none;
             color: $orange;
+            outline: none;
             &:after{
                 width: 80%;
             }
@@ -52,6 +53,15 @@ header{
         &.site-branding{
             &:after{
                 display: none;
+            }
+        }
+    }
+    .current-menu-item a{
+        &{
+            text-decoration: none;
+            color: $orange;
+            &:after{
+                width: 80%;
             }
         }
     }
@@ -79,6 +89,12 @@ header{
             }
             a:hover, a:focus{
                 color: $yellow;
+                outline: none;
+            }
+            &.current-menu-item{
+                a{
+                    color: $yellow;
+                }
             }
         }
     }
@@ -89,6 +105,7 @@ header{
                 display: none;
             }
             &:hover, &:focus{
+                outline: none;
                 img{
                     transform: scale(.9);
                     transition: .3s;

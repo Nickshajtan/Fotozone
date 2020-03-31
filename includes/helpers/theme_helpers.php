@@ -259,3 +259,48 @@ function hcc_the_custom_logo( $separator = '|' ){
     }
     echo $logo_img;
 }
+
+/**
+ * Returns mime types of file extensions
+ *
+ * @param array $ files_ext file extensions
+ *
+ * @return array
+ */
+function hcc_get_mime_files_extension( $files_ext ) {
+	$mimes = get_allowed_mime_types();
+	$need_mimes = [];
+	foreach ( $files_ext as $file_ext ) {
+		foreach ( $mimes as $type => $mime ) {
+			if ( false !== strpos( $type, $file_ext ) ) {
+				$need_mimes[] = $mime;
+			}
+		}
+	}
+
+	return $need_mimes;
+}
+/**
+* Endings for timer
+*/
+function get_num_ending($number, $ending_arr) 
+{ 
+    $text['day'] = __('Day', 'hcc-addon').' "%s"';
+    
+    $number = $number % 100; 
+    if ($number >= 11 && $number <= 19) { 
+        $ending = $ending_arr[2]; 
+    } else { 
+        $i = $number % 10; 
+        switch ($i) { 
+            case (1): $ending = $ending_arr[0]; 
+                break; 
+            case (2): 
+            case (3): 
+            case (4): $ending = $ending_arr[1]; 
+                break; 
+            default: $ending = $ending_arr[2]; 
+        } 
+    } 
+    return $ending; 
+}

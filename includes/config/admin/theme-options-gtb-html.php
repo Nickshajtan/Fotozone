@@ -7,6 +7,7 @@
 						<?php $post_type_list_saved = get_option('hcc-theme-gtb-pt');
 						if (empty($post_type_list_saved)) {
 							$post_type_list_saved = array();
+                            //update_option('hcc-theme-gtb-pt', $post_type_list_saved);
 						}
 						$post_type_list = '
 						<br/>
@@ -45,6 +46,7 @@
                         if( isset($template_list_saved) ){
                             array_push( $template_list_saved, 'templates/template-acf-flexible.php' );
                             array_push( $template_list_saved, 'template-acf-flexible.php');
+                            update_option('hcc-theme-gtb-tmpl', $template_list_saved);
                         }
 						$template_list = '';
 						$tmplts = get_page_templates();

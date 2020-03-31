@@ -47,7 +47,7 @@
 				    <p class="description"><?php echo __('Modal form image.', 'hcc'); ?></p>
 					<?php 
 					if ( isset( $_REQUEST['saved'] ) ){
-						echo '<div class="updated"><p>Saved.</p></div>';
+						echo '<div class="updated"><p>' . __('Saved.', 'hcc') . '</p></div>';
 					}
 					echo hcc_image_uploader_field( 'hcc-theme-mf-img', get_option( 'hcc-theme-mf-img' ) ); ?>
 				</td>

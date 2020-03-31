@@ -1,6 +1,8 @@
 <?php
-
-// remove logo homepage link on front page
+/*
+ * remove logo homepage link on front page
+ *
+ */
 add_filter( 'get_custom_logo', 'hcc_custom_logo_link' );
 function hcc_custom_logo_link($html) {
 	// The logo
@@ -44,29 +46,36 @@ remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
 // Disable REST API link in HTTP headers
 remove_action('template_redirect', 'rest_output_link_header', 11, 0);
 
-
-
-/**
- * Disable feed
+/*
+ * Redirect to the homepage all users trying to access feeds.
+ *
  */
-
-// Redirect to the homepage all users trying to access feeds.
 function disable_feeds() {
 	wp_redirect( THEME_HOME_URL );
 	die;
 }
-// Disable global RSS, RDF & Atom feeds.
+
+/*
+ * Disable global RSS, RDF & Atom feeds.
+ *
+ */
 add_action( 'do_feed',      'disable_feeds', -1 );
 add_action( 'do_feed_rdf',  'disable_feeds', -1 );
 add_action( 'do_feed_rss',  'disable_feeds', -1 );
 add_action( 'do_feed_rss2', 'disable_feeds', -1 );
 add_action( 'do_feed_atom', 'disable_feeds', -1 );
 
-// Disable comment feeds.
+/*
+ * Disable comment feeds.
+ *
+ */
 add_action( 'do_feed_rss2_comments', 'disable_feeds', -1 );
 add_action( 'do_feed_atom_comments', 'disable_feeds', -1 );
 
-// Prevent feed links from being inserted in the <head> of the page.
+/*
+ * Prevent feed links from being inserted in the <head> of the page.
+ *
+ */
 add_action( 'feed_links_show_posts_feed',    '__return_false', -1 );
 add_action( 'feed_links_show_comments_feed', '__return_false', -1 );
 remove_action( 'wp_head', 'feed_links',       2 );
@@ -88,7 +97,10 @@ function disable_emojis() {
 }
 add_action( 'init', 'disable_emojis' );
 
-// Filter function used to remove the tinymce emoji plugin.
+/*
+ * Filter function used to remove the tinymce emoji plugin.
+ *
+ */
 function disable_emojis_tinymce( $plugins ) {
 	if ( is_array( $plugins ) ) {
 		return array_diff( $plugins, array( 'wpemoji' ) );
@@ -97,7 +109,10 @@ function disable_emojis_tinymce( $plugins ) {
 	}
 }
 
-// Remove emoji CDN hostname from DNS prefetching hints.
+/*
+ * Remove emoji CDN hostname from DNS prefetching hints.
+ *
+ */
 function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 	if ( 'dns-prefetch' == $relation_type ) {
 		/** This filter is documented in wp-includes/formatting.php */
@@ -109,7 +124,10 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
 	return $urls;
 }
 
-//Remove JQuery migrate
+/*
+ * Remove JQuery migrate
+ *
+ */
 add_action( 'wp_default_scripts', 'hcc_remove_jquery_migrate' );
 function hcc_remove_jquery_migrate( $scripts ) {
 	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {

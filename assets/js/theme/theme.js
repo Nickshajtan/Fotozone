@@ -15,6 +15,8 @@ var cfThankYou      = hcc_ajax_params.cfThankYou;
 var more_text       = hcc_ajax_params.more_text;
 var error_text      = hcc_ajax_params.error_text;
 var load_text       = hcc_ajax_params.load_text;
+var slice_more      = hcc_ajax_params.slice_more_text;
+var slice_less      = hcc_ajax_params.slice_less_text;
 
 jQuery( document ).ready(function($) {
     Loader();
@@ -29,6 +31,34 @@ jQuery( document ).ready(function($) {
     waterweellCarousel(); //  Waterweell jQuery slider
     overlayHide();
     mobileMenu();
+    priceCheck();
+    iasInitial( $('') );
+    
+    $('.modal-order').on('click', function(e){
+        e.preventDefault();
+        showStronglyForm( $('.modal-form') );
+    });
+    
+    try{
+          
+        var ias = $.ias( {
+                      container:  '.post-gallery',
+                      item:       '.post-item',
+                      pagination: '.pagination',
+                      next:       '.page-numbers.next',
+                     //loader      : "<img src='/img/loading.gif'>",
+        });
+        
+        console.log( ias );
+
+        ias.extension( new IASTriggerExtension( { offset: 2 } ) );
+        ias.extension( new IASSpinnerExtension() );
+        ias.extension( new IASNoneLeftExtension() );
+            
+    }
+    catch(e){
+          console.log('Problem with Ias jQuery plugin');
+    }   
 });
      
 // Preloader
@@ -323,4 +353,36 @@ function hideFeedBackInner(){
        ButtonWrap.removeClass('active'); 
        ButtonWrap.find('.button-tel').removeClass('active'); 
        ButtonWrap.find('.buttons-socials').removeClass('active');
+}
+
+function priceCheck(){
+    if($("*").is(".we-price")){
+        let div          = $('.we-price .price-block');
+        let showChar     = 60;
+        let ellipsestext = "...";
+        let moretext     = slice_more;
+        let lesstext     = slice_less;
+        $(div).each(function() {
+            let content = $(this).find('.price-text').html();
+            if(content.length > showChar) {
+                let c = content.substr(0, showChar);
+                let h = content.substr(showChar-1, content.length - showChar);
+                let html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<span class="morelink">' + moretext + '</span></span>'; 
+                $(this).find('.price-text').html(html);
+            }
+        });
+        $(".morelink").on('click', function(){
+            $(this).closest('.price-block').toggleClass('active');
+            if($(this).hasClass("less")) {
+                $(this).removeClass("less");
+                $(this).html(moretext);
+            } else {
+                $(this).addClass("less");
+                $(this).html(lesstext);
+            }
+            $(this).parent().prev().toggle();
+            $(this).prev().toggle();
+            return false;
+        });
+    }
 }

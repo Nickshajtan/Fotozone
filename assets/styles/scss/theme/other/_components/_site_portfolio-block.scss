@@ -88,7 +88,7 @@
                     height: 64px;
                     display: block;
                     margin-right: 10px;
-                    background-image: url(img/icons/search.svg);
+                    background-image: url(./img/icons/search.svg);
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -125,7 +125,7 @@
                     height: 44px;
                     display: block;
                     margin-right: 10px;
-                    background-image: url(img/icons/search-black.svg);
+                    background-image: url(./img/icons/search-black.svg);
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: contain;
@@ -153,25 +153,29 @@
             }
         }
     }
-    .load-more .button{
-        box-shadow: 0 0 5px $white;
-    }
-    .button{
-            @include rounded--button($dark, 100px, relative, $yellow, 10px 30px);
-            margin-top: 15px;
+    &, &.light-theme, &.dark-theme{
+        .load-more .button{
             box-shadow: 0 0 5px $white;
-            font-size: $middler;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: .3s;
-            border: 5px solid $yellow;
-            font-family: $secondary-font;
-            min-width: 270px;
-            max-width: 100%;
-            &:hover, &:focus{
+            cursor: pointer;
+        }
+        .button{
+                @include rounded--button($dark, 100px, relative, $yellow, 10px 30px);
+                margin-top: 15px;
+                box-shadow: 0 0 5px $white;
+                font-size: $middler;
                 text-decoration: none;
-                border-color: $orange;
-            }
+                text-transform: uppercase;
+                transition: .3s;
+                border: 5px solid $yellow;
+                font-family: $secondary-font;
+                min-width: 270px;
+                max-width: 100%;
+                &:hover, &:focus{
+                    text-decoration: none;
+                    border-color: $orange;
+                    color: $black;
+                }
+        }
     }
 }
 /* JS instagram */
@@ -201,7 +205,7 @@
             }
             &:after{
                 content: '';
-                background-image: url(img/icons/search.svg);
+                background-image: url(./img/icons/search.svg);
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: 25% 25%;

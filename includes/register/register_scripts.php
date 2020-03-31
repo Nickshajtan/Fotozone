@@ -225,6 +225,8 @@ function hcc_add_footer_scripts() {
         'more_text' => __('Показать ещё', 'hcc'),
         'error_text' => __('Ошибка запроса', 'hcc'),
         'load_text' => __('Загрузка', 'hcc'),
+        'slice_more_text' => __('Показать ещё', 'hcc'),
+        'slice_less_text' => __('Скрыть', 'hcc'),
 	) );
     $template = get_post_meta( get_queried_object_id(), '_wp_page_template', true );
     if( $template == 'template-thanks.php' || $template == 'template-contacts.php' || $template == '404.php' || $template == 'template-privacy.php' ){

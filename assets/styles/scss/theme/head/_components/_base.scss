@@ -1,3 +1,8 @@
+ul{
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
 #content{
     min-height: calc(100vh - 340px);
     .content-none{
@@ -8,7 +13,7 @@
     a{
         color: $light-helper-color;
         transition: .3s;
-        &:hover, &:focus, &:visited{
+        &:hover, &:focus{
             text-decoration: none;
             color: darken( $light-helper-color, 15% );
         }
@@ -18,7 +23,7 @@
     a{
         color: $third-dark-color;
         transition: .3s;
-        &:hover, &:focus, &:visited{
+        &:hover, &:focus{
             text-decoration: none;
             color: darken( $dark-helper-color, 5% );
         }
@@ -133,6 +138,165 @@ section{
                     word-break: break-word;
                 }
             }
+        }
+    }
+}
+
+.grid-container{
+        display: grid;
+        grid-template-rows: auto;
+        grid-gap: 15px;
+        margin: 0 15px;
+        
+        @for $i from 1 through 6 {
+            &.grid-column-#{$i}{
+                grid-template-columns: repeat( $i, 1fr);
+            }
+        }
+}  
+@media screen and ( max-width: 1365px ){
+        .grid-container{
+            grid-template-columns: repeat(3, 1fr);
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+}
+@media screen and ( max-width: 1023px ){
+        .grid-container{
+            grid-template-columns: repeat(2, 1fr);
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+}
+@media screen and ( max-width: 767px ){
+        .grid-container{
+            grid-template-columns: 1fr;
+            @for $i from 1 through 6 {
+                &.grid-column-#{$i}{
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+}
+
+.post-gallery{
+    margin-top: 50px;
+    padding-bottom: 120px;
+    li, .post-item{
+        position: relative;
+        max-height: 360px;
+        overflow: hidden;
+    }
+    a[data-fancybox="portfolio"]{
+        &:after{
+            content: '';
+            width: 100%;
+            height: 0;
+            display: block;
+            background-color: rgba( 0, 0, 0, .5);
+            background-image: url(./img/icons/search.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 30% 30%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;  
+            transition: .3s linear height;
+        }
+        &:hover{
+            &:after{
+                height: 100%;
+                display: block;
+                transition: .3s linear height;
+            }
+        }
+        img{
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+    .ias-trigger, .ias-spinner{
+        position: absolute;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+    }
+}
+
+.pagination{
+    width: 100%;
+    margin-top: 50px;
+    .nav-links{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    a{
+        background-color: $yellow;
+    }
+    .page-numbers{
+        height: 30px;
+        width: 30px;
+        border: solid 1px $orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+        font-family: $secondary-font;
+        margin: 0 10px;
+        box-shadow: 0 10px 15px -5px #444;
+        &.next, &.prev{
+            width: auto;
+            padding: 0 10px;
+        }
+    }
+}
+.load-more .button{
+    display: inline-flex;
+    align-items: flex-end;
+    &:after{
+        content: '';
+        width: 33px;
+        height: 11px;
+        position: relative;
+        bottom: 5px;
+        left: 3px;
+        background-image:  url(./img/icons/dotted-loader.gif);
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: none;
+    }
+    &.active{
+        &:after{
+            display: block;
+        }
+    }
+}
+.load-loder{
+    height: 50px;
+    width: 100%;
+    padding: 10px 0;
+    &:after{
+        content: '';
+        margin-left: auto;
+        margin-right: auto;
+        background-image:  url(./img/ajax-loader.gif);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+        display: none;
+    }
+    &.active{
+        &:after{
+            display: block;
         }
     }
 }

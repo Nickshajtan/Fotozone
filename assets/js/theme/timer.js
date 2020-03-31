@@ -63,20 +63,33 @@ function actionTimer(){
                   clearInterval(timeinterval);
                   return true;
                 }
-
-                daysSpan.innerHTML = t.days;
-                hoursSpan.innerHTML = ("0" + t.hours).slice(-2);
+                if(daysSpan){
+                    daysSpan.innerHTML = t.days;
+                }
+                if(hoursSpan){
+                    hoursSpan.innerHTML = ("0" + t.hours).slice(-2);
+                }
+               
                 var minute = t.minutes;
                 if( minute == 1 || minute == 21 || minute == 31 || minute == 41 || minute == 51 ){
-                    minutesText.innerHTML = minuteLocale;
+                    if(minutesText){
+                        minutesText.innerHTML = minuteLocale;
+                    }
                 }
                 else if( minute == 2 || minute == 3 || minute == 4 || minute == 22 || minute == 23 || minute == 24 || minute == 32 || minute == 33 || minute == 34 || minute == 42 || minute == 43 || minute == 44  || minute == 52 || minute == 53 || minute == 54 || minute == 56 ){
-                    minutesText.innerHTML = minutLocale; 
+                   if(minutesText){
+                        minutesText.innerHTML = minutLocale; 
+                   }
                 }
                 else{
-                    minutesText.innerHTML = minutesLocale;  
+                    if(minutesText){
+                        minutesText.innerHTML = minutesLocale; 
+                    }
                 }
-                minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+                if(minutesSpan){
+                    minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+                }
+                
                 //secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
               }
 

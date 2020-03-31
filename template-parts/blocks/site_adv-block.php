@@ -72,7 +72,7 @@ if( $block ) : ?>
                         <?php while (have_posts()) : the_post(); ?>
                               <?php $title   = wp_kses_post( get_the_title() );
                                     $content = wp_kses_post( get_the_content() ); 
-                                    $content = wp_trim_words( $content, 35, '...');
+                                    $content = wp_trim_words( $content, 25, '...');
                                     $image   = esc_url( get_the_post_thumbnail_url() );
                                     $link    = esc_url( get_permalink() );
                                     if( $image ) :

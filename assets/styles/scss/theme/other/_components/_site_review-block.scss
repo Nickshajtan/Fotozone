@@ -38,6 +38,10 @@
         }
     }
     .review-image{
+            object-fit: contain;
+            height: 400px;
+            width: 250px;
+            max-width: 100%;
             border: 30px solid #fff;
             border-left-width: 14px;
             border-right-width: 14px;
@@ -45,6 +49,7 @@
             border-image: url(img/phone-frame.png) 25% round;
             border-image-repeat: stretch;
             box-sizing: content-box;
+            background-color: $white;
             //border-image-outset: 30px 14px;
     }
 }

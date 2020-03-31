@@ -69,6 +69,10 @@
                         text-align: center;
                         transition: all 0.3s ease-in-out;
                         font-weight: $weight-middler;
+                        padding: 10px 15px;
+                        text-align: left;
+                        margin-left: auto;
+                        margin-right: auto;
                     }
                     &:hover, &:focus{
                         .service-image{
@@ -121,6 +125,10 @@
                         display: none;
                         transition: all 0.3s ease-in-out;
                         font-weight: $weight-middler;
+                        padding: 10px 15px;
+                        text-align: left;
+                        margin-left: auto;
+                        margin-right: auto;
                     }
                     &:hover, &:focus{
                         .service-image{
@@ -150,15 +158,8 @@
         justify-content: center;
         width: 100%;
     }
-    a, a:visited{
+    a{
         background-color: $yellow;
-        color: $dark;
-        text-decoration: none;
-        transition: .3s;
-    }
-    a:hover, a:focus{
-        color: $yellow;
-        background-color: transparent;
     }
     .page-numbers{
         height: 30px;
@@ -174,6 +175,50 @@
             width: auto;
             padding: 0 10px;
         }
+    }
+}
+.ias-trigger{
+    margin-top: 30px;
+}
+
+.light-theme{
+    .ias-trigger, .load-more{
+        .button{
+                @include rounded--button($dark, 100px, relative, $third-light-color, 10px 30px);
+                margin-top: 15px;
+                box-shadow: 0 0 5px $dark;
+                font-size: $middler;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: .3s;
+                border: 5px solid $third-light-color;
+                font-family: $secondary-font;
+                cursor: pointer;
+                &:hover, &:focus{
+                    text-decoration: none;
+                    border-color: $light-helper-color;
+                }
+            }
+    }
+}
+.dark-theme{
+    .ias-trigger, .load-more{
+        .button{
+                @include rounded--button($dark, 100px, relative, $third-dark-color, 10px 30px);
+                margin-top: 15px;
+                box-shadow: 0 0 5px $dark;
+                font-size: $middler;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: .3s;
+                border: 5px solid $third-dark-color;
+                font-family: $secondary-font;
+                cursor: pointer;
+                &:hover, &:focus{
+                    text-decoration: none;
+                    border-color: darken( $third-dark-color, 10% );
+                }
+            }
     }
 }
 @media screen and ( max-width: 1365px ){
