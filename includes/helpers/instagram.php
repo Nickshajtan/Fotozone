@@ -352,8 +352,9 @@ function hcc_get_instagram_api_token( $url, $fields= array() ){
  */
 add_filter( 'cron_schedules', 'hcc_cron_interval'); 
 function hcc_cron_interval( $intervals ) {
+    $cron = trim(get_field('cron_time', 'options'));
 	$intervals['every_48_hours'] = array(
-		'interval' => 172800,
+		'interval' => ( isset($cron) && !is_null($cron) ) ? 3600 * $cron : 172800,
 		'display' => __('Каждые 48 часов', 'hcc'),
 	);
 	return $intervals;
