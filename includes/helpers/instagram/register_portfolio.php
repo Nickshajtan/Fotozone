@@ -198,8 +198,8 @@ function SetPortfolioImg( $filename, $local_url, $type, $post_id ){
                 echo $attach_data->get_error_message('fallen');
     }
     $metadata = wp_update_attachment_metadata( $attach_id, $attach_data );
-    if( has_post_thumbnail( $post_id ) ){
-        $get_img = get_post_thumbnail_id( $post_id );
+    if( $metadata && has_post_thumbnail( $post_id ) ){
+        $get_img = attachment_url_to_postid( get_the_post_thumbnail_url( $post_id, 'full' ) );
     }
     $set_img  = set_post_thumbnail( $post_id, $attach_id ); 
     if( $set_img ) {
